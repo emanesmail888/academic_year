@@ -25,14 +25,16 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($schoolInYears as $schoolYear)
-
-                <tr>
-                    <td>{{ $schoolYear->year }}</td>
-                    <td>{{ $schoolYear->school_classes_count }}</td>
-                </tr>
+            @if ($schoolClassesInYear->count() > 0 )
+                @foreach ($schoolClassesInYear as $schoolClass)
+                    <tr>
+                        <td>{{ $schoolClass->year }}</td>
+                        <td>{{ $schoolClass->school_classes_count }}</td>
+                    </tr>
                 @endforeach
-
+            @else
+                <p>No Classes Found For This User.</p>
+            @endif
             </tbody>
         </table>
     <p class="text-danger h4 ">subjects with  year</p>
@@ -44,14 +46,16 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($subjectsWithYear as $schoolYear)
-
-                <tr>
-                    <td>{{$schoolYear->year}}</td>
-                    <td> {{$schoolYear->subjects->count()}}</td>
-                </tr>
-                @endforeach
-
+             @if ($subjectsWithYear->count() > 0)
+                    @foreach ($subjectsWithYear as $subject)
+                        <tr>
+                            <td>{{$subject->year}}</td>
+                            <td> {{$subject->subjects->count()}}</td>
+                        </tr>
+                    @endforeach
+            @else
+                <p>No Subjects Found For This User.</p>
+            @endif
             </tbody>
         </table>
 
@@ -63,15 +67,17 @@
                 </tr>
             </thead>
             <tbody >
+            @if ($examsWithYear->count() > 0)
                 @foreach ($examsWithYear as $exam)
-                <tr>
-                    @if (count($exam->exams) !== 0)
-                    <td>{{$exam->year}}</td>
-                    @endif
-                </tr>
-
+                    <tr>
+                        @if (count($exam->exams) !== 0)
+                        <td>{{$exam->year}}</td>
+                        @endif
+                    </tr>
                 @endforeach
-
+            @else
+                <p>No Exams Found For This Year.</p>
+            @endif
             </tbody>
         </table>
 

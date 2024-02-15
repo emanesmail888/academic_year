@@ -15,14 +15,14 @@ class indexController extends Controller
         $school_classes = DB::table('school_classes')->count();
         $subjects = DB::table('subjects')->count();
         $classes_per_year = DB::table('school_classes')->leftJoin('school_years', 'school_classes.school_year_id', '=', 'school_years.id')->get();
-        $schoolInYears = SchoolYear::withCount('schoolClasses')->get();
+        $schoolClassesInYear = SchoolYear::withCount('schoolClasses')->get();
         $subjectsWithYear = SchoolYear::yearWithSubjects()->get();
         $examsWithYear = SchoolYear::yearWithExams()->get();
 
 
 
 
-        return view('index',compact(['school_years','school_classes','classes_per_year','subjects','subjectsWithYear','examsWithYear','schoolInYears']));
+        return view('index',compact(['school_years','school_classes','classes_per_year','subjects','subjectsWithYear','examsWithYear','schoolClassesInYear']));
     }
 
 
