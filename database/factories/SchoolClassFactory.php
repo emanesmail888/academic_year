@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\SchoolClass;
-// use App\Models\SchoolYear;
+use App\Models\SchoolYear;
 
 
 /**
@@ -25,7 +25,9 @@ class SchoolClassFactory extends Factory
             'class_name' => $this->faker->word,
             'school_year_id' => function () {
                 // return SchoolYear::factory()->create()->id;
-                return rand(1, 10);
+               // return rand(1, 10);
+                return SchoolYear::pluck('id')->random();
+
             },
         ];
     }

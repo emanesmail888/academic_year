@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link href="{{asset('dist/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('dist/css/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{ asset('dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('dist/css/bootstrap.css') }}" rel="stylesheet">
 </head>
-<body>
-  <div class="container">
-    <h1>Task Queries</h1>
-    <p class="text-danger h4 ">School Years Count:<h4>{{$school_years}}</h4></p>
-    <p class="text-danger h4 ">School classes Count:<h4>{{$school_classes}}</h4></p>
-    <p class="text-danger h4 ">School Subjects Count:<h4>{{$subjects}}</h4></p>
-    <hr>
 
-    <p class="text-danger h4 ">classes in Each year</p>
+<body>
+    <div class="container">
+        <h1>Task Queries</h1>
+        <p class="text-danger h4 ">School Years Count:
+        <h4>{{ $school_years }}</h4>
+        </p>
+        <p class="text-danger h4 ">School classes Count:
+        <h4>{{ $school_classes }}</h4>
+        </p>
+        <p class="text-danger h4 ">School Subjects Count:
+        <h4>{{ $subjects }}</h4>
+        </p>
+        <hr>
+
+        <p class="text-danger h4 ">classes in Each year</p>
         <table class="table  bg-light">
             <thead>
                 <tr>
@@ -25,19 +33,20 @@
                 </tr>
             </thead>
             <tbody>
-            @if ($schoolClassesInYear->count() > 0 )
-                @foreach ($schoolClassesInYear as $schoolClass)
-                    <tr>
-                        <td>{{ $schoolClass->year }}</td>
-                        <td>{{ $schoolClass->school_classes_count }}</td>
-                    </tr>
-                @endforeach
-            @else
-                <p>No Classes Found For This User.</p>
-            @endif
+                {{ $schoolClassesInYear }}
+                @if ($schoolClassesInYear->count() > 0)
+                    @foreach ($schoolClassesInYear as $schoolClass)
+                        <tr>
+                            <td>{{ $schoolClass->year }}</td>
+                            <td>{{ $schoolClass->school_classes_count }}</td>
+                        </tr>
+                    @endforeach
+                @else
+                    <p>No Classes Found For This User.</p>
+                @endif
             </tbody>
         </table>
-    <p class="text-danger h4 ">subjects with  year</p>
+        <p class="text-danger h4 ">subjects with year</p>
         <table class="table bg-light">
             <thead>
                 <tr>
@@ -46,46 +55,46 @@
                 </tr>
             </thead>
             <tbody>
-             @if ($subjectsWithYear->count() > 0)
+                @if ($subjectsWithYear->count() > 0)
                     @foreach ($subjectsWithYear as $subject)
                         <tr>
-                            <td>{{$subject->year}}</td>
-                            <td> {{$subject->subjects->count()}}</td>
+                            <td>{{ $subject->year }}</td>
+                            <td> {{ $subject->subjects->count() }}</td>
                         </tr>
                     @endforeach
-            @else
-                <p>No Subjects Found For This User.</p>
-            @endif
+                @else
+                    <p>No Subjects Found For This User.</p>
+                @endif
             </tbody>
         </table>
 
-    <p class="text-danger h4 ">exams with  year</p>
+        <p class="text-danger h4 ">exams with year</p>
         <table class="table col-md-3 bg-light">
             <thead>
                 <tr>
                     <th>year</th>
                 </tr>
             </thead>
-            <tbody >
-            @if ($examsWithYear->count() > 0)
-                @foreach ($examsWithYear as $exam)
-                    <tr>
-                        @if (count($exam->exams) !== 0)
-                        <td>{{$exam->year}}</td>
-                        @endif
-                    </tr>
-                @endforeach
-            @else
-                <p>No Exams Found For This Year.</p>
-            @endif
+            <tbody>
+                @if ($examsWithYear->count() > 0)
+                    @foreach ($examsWithYear as $exam)
+                        <tr>
+                            @if (count($exam->exams) !== 0)
+                                <td>{{ $exam->year }}</td>
+                            @endif
+                        </tr>
+                    @endforeach
+                @else
+                    <p>No Exams Found For This Year.</p>
+                @endif
             </tbody>
         </table>
 
 
 
-  </div>
-    <script src="{{asset('dist/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('dist/js/bootstrap.js')}}"></script>
+    </div>
+    <script src="{{ asset('dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('dist/js/bootstrap.js') }}"></script>
 </body>
-</html>
 
+</html>

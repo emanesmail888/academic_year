@@ -21,9 +21,14 @@ class QuestionFactory extends Factory
 
     public function definition()
     {
+
         return [
             'question_name' => $this->faker->sentence,
-            'answer' => $this->faker->paragraph,
+            'answers' =>json_encode([
+                $this->faker->word,
+                $this->faker->word,
+                $this->faker->word]),
+            'correct_answer' => $this->faker->numberBetween(0, 2),
             'subject_id' => function () {
                 return Subject::pluck('id')->random();
             },
