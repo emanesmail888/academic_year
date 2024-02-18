@@ -24,9 +24,15 @@ class SchoolYear extends Model
         return self::with('subjects');
     }
 
+
     public function exams()
     {
-        return $this->hasManyThrough(Exam::class, Subject::class,'school_class_id','subject_id');
+        return $this->hasManyThrough(ExamQuestion::class, Subject::class,'school_class_id','subject_id');
+    }
+
+    public static function getYearsWithExams()
+    {
+        return self::with('exams');
     }
     public static function yearWithExams()
     {

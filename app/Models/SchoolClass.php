@@ -15,8 +15,10 @@ class SchoolClass extends Model
         return $this->belongsTo(SchoolYear::class);
     }
 
-    public function questions()
+    public function subjects()
     {
-        return $this->hasMany(Question::class);
+        return $this->hasMany(Subject::class);
     }
+
+   
 }

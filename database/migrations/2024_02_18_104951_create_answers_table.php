@@ -13,10 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('school_years', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->string('year');
+            $table->unsignedBigInteger('question_id');
+            $table->string('answer_text');
+            $table->boolean('correct_answer')->default(false);
             $table->timestamps();
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
+            // Apply indexes
+            $table->index('question_id');
+
         });
     }
 
@@ -27,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('school_years');
+        Schema::dropIfExists('answers');
     }
 };

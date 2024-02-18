@@ -24,11 +24,6 @@ class QuestionFactory extends Factory
 
         return [
             'question_name' => $this->faker->sentence,
-            'answers' =>json_encode([
-                $this->faker->word,
-                $this->faker->word,
-                $this->faker->word]),
-            'correct_answer' => $this->faker->numberBetween(0, 2),
             'subject_id' => function () {
                 return Subject::pluck('id')->random();
             },

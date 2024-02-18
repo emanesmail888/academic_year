@@ -8,16 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Exam extends Model
 {
     use HasFactory;
-    protected $fillable = ['exam_name', 'exam_date', 'subject_id','question_id'];
-
-    public function subject()
-    {
-        return $this->belongsTo(Subject::class);
-    }
+    protected $fillable = ['exam_name', 'exam_date'];
 
     public function questions()
     {
         return $this->belongsToMany(Question::class);
     }
-
+    public static function questionsWithExams()
+    {
+        return self::with('exams');
+    }
+    
 }

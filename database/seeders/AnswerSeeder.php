@@ -4,10 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\SchoolClass;
+use App\Models\Answer;
 
 
-class SchoolClassSeeder extends Seeder
+class AnswerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class SchoolClassSeeder extends Seeder
      */
     public function run()
     {
-        SchoolClass::factory()->count(15)->create();
+      Answer::factory()->count(50)->create();
 
     }
 }
