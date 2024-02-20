@@ -11,6 +11,8 @@ class Exam extends Model
 {
     use HasFactory,SoftDeletes;
     protected $fillable = ['exam_name', 'exam_date'];
+    protected $dates = ['deleted_at'];
+
 
     public function questions()
     {

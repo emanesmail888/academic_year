@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\SchoolClassesController;
 use App\Http\Controllers\Dashboard\SubjectController;
 use App\Http\Controllers\Dashboard\QuestionController;
 use App\Http\Controllers\Dashboard\AnswerController;
+use App\Http\Controllers\Dashboard\ExamController;
 use App\Http\Controllers\indexController;
 use App\Http\Controllers\HomeController;
 
@@ -90,4 +91,15 @@ Route::get('/answer/{id}/delete',[AnswerController::class,'destroy'])->name('ans
 Route::get('/answers/archived',[AnswerController::class,'archived_answers'])->name('answers.archived');
 Route::get('/answers/restore/{id}',[AnswerController::class,'restore'])->name('answer.restore');
 Route::get('/answers/hDelete/{id}',[AnswerController::class,'hard_delete_answer'])->name('answer.hard_delete');
+
+Route::get('/exam/create',[ExamController::class,'create'])->name('exam.create');
+Route::post('/exam/store',[ExamController::class,'store'])->name('exam.store');
+Route::get('/exam/{id}',[ExamController::class,'show'])->name('exam.show');
+Route::get('/exams',[ExamController::class,'index'])->name('exams');
+Route::get('/exam/{id}/edit',[ExamController::class,'edit'])->name('exam.edit');
+Route::post('/exam/{id}',[ExamController::class,'update'])->name('exam.update');
+Route::get('/exam/{id}/delete',[ExamController::class,'destroy'])->name('exam.delete');
+Route::get('/exams/archived',[ExamController::class,'archived_exams'])->name('exams.archived');
+Route::get('/exams/restore/{id}',[ExamController::class,'restore'])->name('exam.restore');
+Route::get('/exams/hDelete/{id}',[ExamController::class,'hard_delete_exam'])->name('exam.hard_delete');
 

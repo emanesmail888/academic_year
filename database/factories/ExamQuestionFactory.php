@@ -29,9 +29,7 @@ class ExamQuestionFactory extends Factory
             'question_id' => function () {
                 return Question::pluck('id')->random();
             },
-            'subject_id' => function () {
-                return Subject::pluck('id')->random();
-            },
+            
         ];
     }
 }

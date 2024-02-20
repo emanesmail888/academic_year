@@ -4,11 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class ExamQuestion extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
     protected $table="exam_question";
-    protected $fillable = ['exam_id', 'question_id','subject_id'];
+    protected $fillable = ['exam_id', 'question_id'];
+    protected $dates = ['deleted_at'];
+
 
 }
