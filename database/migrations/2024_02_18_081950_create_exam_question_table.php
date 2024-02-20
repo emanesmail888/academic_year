@@ -22,6 +22,8 @@ return new class extends Migration
             $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->softDeletes();
+
 
             // Apply indexes
             $table->index('exam_id');

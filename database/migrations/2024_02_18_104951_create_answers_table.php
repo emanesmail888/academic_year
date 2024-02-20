@@ -20,6 +20,8 @@ return new class extends Migration
             $table->boolean('correct_answer')->default(false);
             $table->timestamps();
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
+            $table->softDeletes();
+
             // Apply indexes
             $table->index('question_id');
 

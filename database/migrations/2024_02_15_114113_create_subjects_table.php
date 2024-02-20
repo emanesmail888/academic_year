@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreign('school_class_id')->references('id')->on('school_classes')->onDelete('cascade');
              // Apply indexes
+            $table->softDeletes();
             $table->index('school_class_id');
         });
     }

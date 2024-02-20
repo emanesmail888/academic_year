@@ -20,13 +20,27 @@ class indexController extends Controller
         $schoolClassesInYear = SchoolYear::withCount('schoolClasses')->get();
         $subjectsWithYear = SchoolYear::yearWithSubjects()->get();
         $examsWithYear = SchoolYear::getYearsWithExams()->get();
+        $examsWithYear1 = DB::table('school_years')
+        ->join('school_classes', 'school_years.id', '=', 'school_classes.school_year_id')
+        ->join('subjects', 'school_classes.id', '=', 'subjects.school_class_id')
+        ->join('questions', 'subjects.id', '=', 'questions.subject_id')
+        ->join('exam_question', 'questions.id', '=', 'exam_question.question_id')
+        ->join('exams', 'exam_question.exam_id', '=', 'exams.id')
+        ->select('school_years.year')
+        ->groupBy('school_years.year')
+        ->get();
+        // $result = DB::table('school_years')
+        // ->crossJoin('exam_question')
+        // ->select('school_years.year', 'exam_question.exam_id')
+        //  ->get();
 
-
-
-
-
-        return view('index',compact(['school_years','school_classes','classes_per_year','subjects','subjectsWithYear','schoolClassesInYear','examsWithYear']));
+        return view('index',compact(['school_years','school_classes','classes_per_year','subjects','subjectsWithYear','schoolClassesInYear','examsWithYear','examsWithYear1']));
     }
+
+
+
+
+
 
 
 }

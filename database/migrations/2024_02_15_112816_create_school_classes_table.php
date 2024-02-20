@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('school_year_id');
             $table->string('class_name');
             $table->foreign('school_year_id')->references('id')->on('school_years')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
 
             // Apply indexes

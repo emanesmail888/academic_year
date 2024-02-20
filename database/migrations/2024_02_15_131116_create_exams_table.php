@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('exam_name');
             $table->date('exam_date');
+            $table->softDeletes();
             $table->timestamps();
-           
+
         });
     }
 

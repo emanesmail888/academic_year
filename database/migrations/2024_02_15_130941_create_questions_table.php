@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('subject_id');
             $table->timestamps();
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->softDeletes();
             $table->index('subject_id');
 
 
