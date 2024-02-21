@@ -4,15 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class ExamQuestion extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
     protected $table="exam_question";
     protected $fillable = ['exam_id', 'question_id'];
-    protected $dates = ['deleted_at'];
+
+    public function exam()
+    {
+        return $this->belongsTo(Exam::class);
+    }
+
+    public function question()
+    {
+        return $this->belongsTo(Question::class);
+    }
 
 
 }

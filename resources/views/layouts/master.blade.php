@@ -35,29 +35,6 @@
 		<div class="container-fluid">
 			<div class="row">
 
-
-				<div class="container">
-					<div class="mid-section main-info-area">
-
-						<div class="wrap-logo-top left-section">
-							<a href="#" class="link-to-home"><img src="{{asset('assets/images/icon.jpg')}}" style="height: 110px;" alt="mercado"></a>
-						</div>
-
-
-							<div class="wrap-icon-section show-up-after-1024">
-								<a href="#" class="mobile-navigation">
-									<span></span>
-									<span></span>
-									<span></span>
-								</a>
-							</div>
-						</div>
-
-					</div>
-				</div>
-
-
-
 					<div class="primary-nav-section">
 						<div class="container">
 							<ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu" >
@@ -78,6 +55,12 @@
 								</li>
 								<li class="menu-item">
 									<a href="{{route('answers')}}" class="link-term mercado-item-title">Answers </a>
+								</li>
+								<li class="menu-item">
+									<a href="{{route('exams')}}" class="link-term mercado-item-title">Exams </a>
+								</li>
+								<li class="menu-item">
+									<a href="{{route('exam_questions')}}" class="link-term mercado-item-title">Exam_questions </a>
 								</li>
 							</ul>
 						</div>

@@ -160,11 +160,35 @@ class AnswerController extends Controller
         $answer->delete();
         return redirect()->route('answers');
     }
+    public function archived_answers()
+    {
+        $answers = Answer::onlyTrashed()->get();
 
+        return view('dashboard.answers.Deleted_answers',compact(['answers']));
+    }
 
+    public function restore($id)
+    {
+        $answer=Answer::withTrashed()->where('id',$id);
+        $answer->restore();
+        return redirect()->route('answers');
+    }
+    public function hard_delete_answer($id)
+    {
+        $answer=Exam::withTrashed()->where('id',$id);
+        $answer->forceDelete();
+        return redirect()->route('answers');
+    }
 
 
 
 }
+
+
+
+
+
+
+
 
 

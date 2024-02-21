@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\ExamQuestion;
+use App\Models\Exam;
+use App\Models\Question;
 
 class ExamQuestionController extends Controller
 {
@@ -15,7 +18,7 @@ class ExamQuestionController extends Controller
      */
     public function index()
     {
-        $exam_questions=ExamQuestion::all();
+        $exam_questions= ExamQuestion::with('exam', 'question')->paginate(10);
        return view('dashboard.exams_questions.ExamQuestions',compact('exam_questions'));
     }
 
@@ -26,7 +29,9 @@ class ExamQuestionController extends Controller
      */
     public function create()
     {
-        return view('dashboard.exams_questions.AddExam_question');
+        $questions=Question::pluck('Question_name','id');
+        $exams=Exam::pluck('exam_name','id');
+        return view('dashboard.exams_questions.AddExamQuestion',compact(['questions','exams']));
 
     }
 
@@ -69,10 +74,12 @@ class ExamQuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Exam $exam, Question $question)
     {
-        $exam_question=ExamQuestion::find($id);
-        return view('dashboard.exams_questions.EditExamQuestion',compact('exam_question'));
+        $examQuestion = $exam->questions()->where('question_id', $question->id)->first();
+        $questions=Question::pluck('Question_name','id');
+        $exams=Exam::pluck('exam_name','id');
+        return view('dashboard.exams_questions.EditExamQuestion',compact('exam','exams','questions' ,'question', 'examQuestion'));
     }
 
     /**
@@ -82,18 +89,22 @@ class ExamQuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+
+
+    public function update(Request $request, Exam $exam, Question $question)
     {
         $this->validate($request,[
-            "exam_id"=>"required",
-            "question_id"=>"required",
-        ]);
-        $exam_question=ExamQuestion::find($id);
-        $exam_question->exam_id=$request->exam_id;
-        $exam_question->question_id=$request->question_id ;
-        $exam_question->save();
+                    "exam_id"=>"required",
+                    "question_id"=>"required",
+                ]);
+
+        $pivotData = [
+            'exam_id' => $request->exam_id,
+            'question_id' => $request->question_id,
+        ];
+        $exam->questions()->updateExistingPivot($question->id, $pivotData);
         return back()->with('success', 'ExamQuestion has been Updated successfully');
-    }
+   }
 
     /**
      * Remove the specified resource from storage.
@@ -101,32 +112,23 @@ class ExamQuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($exam,$question)
     {
-        $exam_question=exam::find($id);
-        $exam_question->delete();
-        return redirect()->route('exams_questions');
+        $exam = Exam::find($exam);
+        $exam->questions()->detach($question);
+        // $exam->questions()->delete();
+        return back()->with('success', 'Pivot ExamClass has been deleted successfully');
     }
 
-    public function archived_exams()
-    {
-        $exams_questions = ExamQuestion::onlyTrashed()->get();
+    // public function del_exams_questions()
+    // {
+    //     $exams_questions = DB::table('exam_question')
+    //     ->whereNotNull('deleted_at')
+    //     ->get();
+    //     return view('dashboard.exams_questions.Deleted_exams_questions',compact(['exams_questions']));
+    // }
 
-        return view('dashboard.exams_questions.Deleted_exams_questions',compact(['exams_questions']));
-    }
 
-    public function restore($id)
-    {
-        $exam_question=ExamQuestion::withTrashed()->where('id',$id);
-        $exam_question->restore();
-        return redirect()->route('exams_questions');
-    }
-    public function hard_delete_exam_question($id)
-    {
-        $exam_question=ExamQuestion::withTrashed()->where('id',$id);
-        $exam_question->forceDelete();
-        return redirect()->route('exams_questions');
-    }
 
 
 }
