@@ -22,7 +22,6 @@
                 </tr>
             </thead>
             <tbody>
-                {{ $schoolClassesInYear }}
                 @if ($schoolClassesInYear->count() > 0)
                     @foreach ($schoolClassesInYear as $schoolClass)
                         <tr>
@@ -64,14 +63,11 @@
                     <th>year</th>
                 </tr>
             </thead>
-            {{$examsWithYear1}}
             <tbody>
                 @if ($examsWithYear->count() > 0)
                     @foreach ($examsWithYear as $exam)
                         <tr>
-                            @if (count($exam->exams) !== 0)
                                 <td>{{ $exam->year }}</td>
-                            @endif
                         </tr>
                     @endforeach
                 @else

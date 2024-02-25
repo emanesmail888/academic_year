@@ -7,8 +7,6 @@ use App\Http\Controllers\Main\SchoolClassController;
 use App\Http\Controllers\Main\SubjectController;
 use App\Http\Controllers\Main\QuestionController;
 use App\Http\Controllers\Main\ExamController;
-use App\Http\Controllers\Dashboard\AnswerController;
-// use App\Http\Controllers\Dashboard\ExamController;
 use App\Http\Controllers\Main\ExamQuestionController;
 use App\Http\Controllers\indexController;
 use App\Http\Controllers\HomeController;
@@ -26,50 +24,12 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 
 
 Auth::routes();
 Route::get('/', [indexController::class, 'index'])->name('index');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-// Route::get('/question/create',[questionController::class,'create'])->name('question.create');
-// Route::post('/question/store',[questionController::class,'store'])->name('question.store');
-// Route::get('/question/{id}',[questionController::class,'show'])->name('question.show');
-// Route::get('/questions',[questionController::class,'index'])->name('questions');
-// Route::get('/question/{id}/edit',[questionController::class,'edit'])->name('question.edit');
-// Route::post('/question/{id}',[questionController::class,'update'])->name('question.update');
-// Route::get('/question/{id}/delete',[questionController::class,'destroy'])->name('question.delete');
-// Route::get('/questions/archived',[questionController::class,'archived_questions'])->name('questions.archived');
-// Route::get('/questions/restore/{id}',[questionController::class,'restore'])->name('question.restore');
-// Route::get('/questions/hDelete/{id}',[questionController::class,'hard_delete_question'])->name('question.hard_delete');
-
-
-
-Route::get('/answer/create',[AnswerController::class,'create'])->name('answer.create');
-Route::post('/answer/store',[AnswerController::class,'store'])->name('answer.store');
-Route::get('/answer/{id}',[AnswerController::class,'show'])->name('answer.show');
-Route::get('/answers',[AnswerController::class,'index'])->name('answers');
-Route::get('/answer/{id}/edit',[AnswerController::class,'edit'])->name('answer.edit');
-Route::post('/answer/{id}',[AnswerController::class,'update'])->name('answer.update');
-Route::get('/answer/{id}/delete',[AnswerController::class,'destroy'])->name('answer.delete');
-Route::get('/answers/archived',[AnswerController::class,'archived_answers'])->name('answers.archived');
-Route::get('/answers/restore/{id}',[AnswerController::class,'restore'])->name('answer.restore');
-Route::get('/answers/hDelete/{id}',[AnswerController::class,'hard_delete_answer'])->name('answer.hard_delete');
-
-// Route::get('/exam/create',[ExamController::class,'create'])->name('exam.create');
-// Route::post('/exam/store',[ExamController::class,'store'])->name('exam.store');
-// Route::get('/exam/{id}',[ExamController::class,'show'])->name('exam.show');
-// Route::get('/exams',[ExamController::class,'index'])->name('exams');
-// Route::get('/exam/{id}/edit',[ExamController::class,'edit'])->name('exam.edit');
-// Route::post('/exam/{id}',[ExamController::class,'update'])->name('exam.update');
-// Route::get('/exam/{id}/delete',[ExamController::class,'destroy'])->name('exam.delete');
-// Route::get('/exams/archived',[ExamController::class,'archived_exams'])->name('exams.archived');
-// Route::get('/exams/restore/{id}',[ExamController::class,'restore'])->name('exam.restore');
-// Route::get('/exams/hDelete/{id}',[ExamController::class,'hard_delete_exam'])->name('exam.hard_delete');
 
 Route::group(['namespace' => 'App\Http\Controllers\Main'], function () {
 Route::resource('school_years', 'SchoolYearController');
@@ -99,9 +59,11 @@ Route::get('/exam/archived',[ExamController::class,'archived_exams'])->name('exa
 Route::get('/exam/restore/{id}',[ExamController::class,'restore'])->name('exam.restore');
 Route::get('/exam/hDelete/{id}',[ExamController::class,'hard_delete_exam'])->name('exam.hard_delete');
 
-Route::resource('exam_questions', 'ExamQuestionController');
+Route::get('/exam_questions',[ExamQuestionController::class,'index'])->name('exam_questions.index');
+Route::get('/exam_questions/create',[ExamQuestionController::class,'create'])->name('exam_questions.create');
+Route::post('/exam_questions/store',[ExamQuestionController::class,'store'])->name('exam_questions.store');
+Route::delete('/exam/{examId}/question/{questionId}',[ExamQuestionController::class,'delete_exam_question'])->name('exam_questions.delete');
 Route::get('select_examQuestion',[ExamQuestionController::class,'selectExamQuestion'])->name('select_examQuestion');
-
 
 
 

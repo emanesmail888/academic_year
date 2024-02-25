@@ -14,7 +14,6 @@ class SchoolClass extends Model
 {
     use HasFactory,SoftDeletes;
     protected $fillable = ['class_name', 'school_year_id'];
-    protected $dates = ['deleted_at'];
 
     public function schoolYear():BelongsTo
     {

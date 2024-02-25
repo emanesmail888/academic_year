@@ -27,8 +27,8 @@ class StoreQuestionRequest extends FormRequest
             "subject_id" => "required|exists:subjects,id",
             "question_name" => "required|string ",
             'answers' => 'required|array',
-        //     'answers.*.answer_text' => 'required|string',
-        //    'answers.*.correct_answer' => 'nullable|boolean',
+            // 'answers[][answer_text]' => 'required|string',
+            // 'answers[][correct_answer]' => 'nullable|boolean',
 
 
         ];

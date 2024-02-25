@@ -40,7 +40,7 @@ class SchoolYearController extends Controller
      * @param  \App\Http\Requests\StoreSchoolYearRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSchoolYearRequest $request):View
+    public function store(StoreSchoolYearRequest $request):RedirectResponse
     {
         $data = $request->validated();
         $schoolYear = SchoolYear::create($data);

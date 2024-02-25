@@ -32,6 +32,7 @@
                                 <tr>
                                     <th>id</th>
                                     <th>Question</th>
+                                    <th>answers</th>
                                     <th>subject_id</th>
                                     <th>Date</th>
                                     <th>Action</th>
@@ -42,6 +43,7 @@
                                 <tr>
                                     <td>{{$question->id}}</td>
                                     <td>{{$question->question_name}}</td>
+                                    <td>{{$question->answers}}</td>
                                     <td>{{$question->subject_id}}</td>
                                     <td>{{$question->created_at}}</td>
                                     <td>

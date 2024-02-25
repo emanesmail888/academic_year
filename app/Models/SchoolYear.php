@@ -17,8 +17,6 @@ class SchoolYear extends Model
     use HasFactory,SoftDeletes;
 
     protected $fillable = ['year'];
-    protected $dates = ['deleted_at'];
-
 
     public function schoolClasses(): HasMany
     {
@@ -36,18 +34,7 @@ class SchoolYear extends Model
     }
 
 
-    public function exams(): HasManyThrough
-    {
-        return $this->hasManyThrough(ExamQuestion::class, Question::class,'subject_id','exam_id');
-    }
-
-    public static function getYearsWithExams()
-    {
-        return self::with('exams');
-    }
-
-
-    public function getNumberOfClasses()
+    public function getNumberOfClasses():int
     {
         return $this->schoolClasses()->count();
     }

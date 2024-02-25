@@ -55,9 +55,7 @@
 								<li class="menu-item">
 									<a href="{{route('questions.index')}}" class="link-term mercado-item-title">questions</a>
 								</li>
-								<li class="menu-item">
-									<a href="{{route('answers')}}" class="link-term mercado-item-title">Answers </a>
-								</li>
+								
 								<li class="menu-item">
 									<a href="{{route('exams.index')}}" class="link-term mercado-item-title">Exams </a>
 								</li>
