@@ -11,9 +11,6 @@ class Subject extends Model
 {
     use HasFactory,SoftDeletes;
     protected $fillable = ['subject_name','school_class_id'];
-    protected $dates = ['deleted_at'];
-
-
 
     public function schoolClass()
     {
@@ -23,6 +20,11 @@ class Subject extends Model
     public function questions(): HasMany
     {
         return $this->hasMany(Question::class);
+    }
+
+    public function exams(): HasMany
+    {
+        return $this->hasMany(Exam::class);
     }
 
 

@@ -17,8 +17,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <a href="{{route('exam_question.create')}}" class="btn btn-success pull-right">add exam_question</a>
-                                {{-- <a href="{{route('exam_questions.archived')}}" class="btn btn-success pull-right ">display deleted Exams_questions</a> --}}
+                                <a href="{{route('exam_questions.create')}}" class="btn btn-success pull-right">add exam_question</a>
 
                             </div>
                         </div><!-- row -->
@@ -45,8 +44,8 @@
                                     <td>{{$exam_question->exam->exam_name}}</td>
                                     <td>{{$exam_question->created_at}}</td>
                                     <td>
-                                        <a href="{{route('exam_question.edit',['exam'=>$exam_question->exam_id,'question'=>$exam_question->question_id])}}"><i class=" fa fa-edit fa-2x"></i></a>
-                                        <a href="{{ route('exam_question.delete',['exam'=>$exam_question->exam_id,'question'=>$exam_question->question_id]) }}" onclick="confirm('Are You Sure, You Want to delete this Exam Question?')"><i class=" fa fa-times fa-2x"></i></a>
+                                        <a href="{{route('exam_questions.edit',['exam_question'=>$exam_question])}}"><i class=" fa fa-edit fa-2x"></i></a>
+                                        <a href="{{ route('exam_questions.destroy',['exam_question'=>$exam_question->exam_id]) }}" onclick="confirm('Are You Sure, You Want to delete this Exam Question?')"><i class=" fa fa-times fa-2x"></i></a>
 
                                     </td>
                                 </tr>

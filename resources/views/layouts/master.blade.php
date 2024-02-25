@@ -18,6 +18,8 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.1/nouislider.css" integrity="sha512-MKxcSu/LDtbIYHBNAWUQwfB3iVoG9xeMCm32QV5hZ/9lFaQZJVaXfz9aFa0IZExWzCpm7OWvp9zq9gVip/nLMg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" async defer></script>
 
 </head>
 <body class="home-page home-01 ">
@@ -42,25 +44,25 @@
 									<a href="/" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
 								</li>
 								<li class="menu-item">
-									<a href="{{route('school_years')}}" class="link-term mercado-item-title"> School Years</a>
+									<a href="{{route('school_years.index')}}" class="link-term mercado-item-title"> School Years</a>
 								</li>
 								<li class="menu-item">
-									<a href="{{route('school_classes')}}" class="link-term mercado-item-title"> School Classes</a>
+									<a href="{{route('school_classes.index')}}" class="link-term mercado-item-title"> School Classes</a>
 								</li>
 								<li class="menu-item">
-									<a href="{{route('subjects')}}" class="link-term mercado-item-title"> Subjects</a>
+									<a href="{{route('subjects.index')}}" class="link-term mercado-item-title"> Subjects</a>
 								</li>
 								<li class="menu-item">
-									<a href="{{route('questions')}}" class="link-term mercado-item-title">questions</a>
+									<a href="{{route('questions.index')}}" class="link-term mercado-item-title">questions</a>
 								</li>
 								<li class="menu-item">
 									<a href="{{route('answers')}}" class="link-term mercado-item-title">Answers </a>
 								</li>
 								<li class="menu-item">
-									<a href="{{route('exams')}}" class="link-term mercado-item-title">Exams </a>
+									<a href="{{route('exams.index')}}" class="link-term mercado-item-title">Exams </a>
 								</li>
 								<li class="menu-item">
-									<a href="{{route('exam_questions')}}" class="link-term mercado-item-title">Exam_questions </a>
+									<a href="{{route('exam_questions.index')}}" class="link-term mercado-item-title">Exam_questions </a>
 								</li>
 							</ul>
 						</div>
@@ -84,6 +86,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"> </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.1/nouislider.min.js" integrity="sha512-1mDhG//LAjM3pLXCJyaA+4c+h5qmMoTc7IuJyuNNPaakrWT9rVTxICK4tIizf7YwJsXgDC2JP74PGCc7qxLAHw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @yield('scripts')
+
 
 </body>
 </html>

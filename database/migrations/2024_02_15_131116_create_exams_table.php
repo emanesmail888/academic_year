@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('exam_name');
             $table->date('exam_date');
+            $table->unsignedBigInteger('subject_id');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
             $table->softDeletes();
+            $table->index('subject_id');
             $table->timestamps();
 
         });

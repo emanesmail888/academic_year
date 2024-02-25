@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Exam;
+use App\Models\Subject;
 
 
 
@@ -24,6 +25,10 @@ class ExamFactory extends Factory
         return [
             'exam_name' => $this->faker->sentence,
             'exam_date' => $this->faker->date,
+            'subject_id' => function () {
+                return Subject::pluck('id')->random();
+            },
+
         ];
     }
 }
