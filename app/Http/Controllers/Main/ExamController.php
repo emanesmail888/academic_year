@@ -106,18 +106,23 @@ class ExamController extends Controller
         return redirect()->back()->with('success', 'Exam deleted successfully.');
     }
 
+
+    //get all trashed Exams deleted with softDelete
     public function archived_exams():View
     {
         $deleted_exams = Exam::onlyTrashed()->paginate(10);
         return view('dashboard.exams.Exam',compact(['deleted_exams']));
     }
 
+    //restore exams which deleted with softDelete 
     public function restore($id):RedirectResponse
     {
         $exam=Exam::withTrashed()->where('id',$id);
         $exam->restore();
         return redirect()->route('exams.index');
     }
+
+    //deleting Exam completely
     public function hard_delete_exam($id):RedirectResponse
     {
         $exam=Exam::withTrashed()->where('id',$id);

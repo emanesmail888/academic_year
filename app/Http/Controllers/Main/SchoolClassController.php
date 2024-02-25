@@ -103,18 +103,21 @@ class SchoolClassController extends Controller
         return redirect()->back()->with('success', 'SchoolClass deleted successfully.');
     }
 
+    //get all trashed school classes deleted with softDelete
     public function archived_school_classes():View
     {
         $trashedClasses = SchoolClass::onlyTrashed()->paginate(10);
         return view('dashboard.school_classes.SchoolClass',compact(['trashedClasses']));
     }
 
+    //restore school classes which deleted with softDelete 
     public function restore($id):RedirectResponse
     {
         $schoolClass=SchoolClass::withTrashed()->where('id',$id);
         $schoolClass->restore();
         return redirect()->route('school_classes.index');
     }
+    //delete school class completely
     public function hard_delete_school_class($id):RedirectResponse
     {
         $schoolClass=SchoolClass::withTrashed()->where('id',$id);

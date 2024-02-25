@@ -99,18 +99,21 @@ class SchoolYearController extends Controller
         return redirect()->back()->with('success', 'SchoolYear deleted successfully.');
     }
 
+    //get all trashed school years deleted with softDelete
     public function archived_school_years():View
     {
         $trashedYears = SchoolYear::onlyTrashed()->paginate(10);
         return view('dashboard.school_years.SchoolYear',compact(['trashedYears']));
     }
 
+    //restore school years which deleted with softDelete 
     public function restore($id):RedirectResponse
     {
         $schoolYear=SchoolYear::withTrashed()->where('id',$id);
         $schoolYear->restore();
         return redirect()->route('school_years.index');
     }
+    // deleting school year completely
     public function hard_delete_school_year($id):RedirectResponse
     {
         $schoolYear=SchoolYear::withTrashed()->where('id',$id);

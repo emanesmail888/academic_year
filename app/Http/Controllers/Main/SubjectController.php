@@ -132,18 +132,22 @@ public function selectSchoolClass(Request $request):JsonResponse
         return redirect()->back()->with('success', 'Subject deleted successfully.');
     }
 
+    //get all trashed subjects deleted with softDelete
     public function archived_subjects()
     {
         $deleted_subjects = Subject::onlyTrashed()->paginate(10);
         return view('dashboard.subjects.Subject',compact(['deleted_subjects']));
     }
 
+    //restore subjects which deleted with softDelete 
     public function restore($id):RedirectResponse
     {
         $subject=Subject::withTrashed()->where('id',$id);
         $subject->restore();
         return redirect()->route('subjects.index');
     }
+
+    //hard delete subject
     public function hard_delete_subject($id):RedirectResponse
     {
         $subject=Subject::withTrashed()->where('id',$id);

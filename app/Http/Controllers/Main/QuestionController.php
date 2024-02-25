@@ -224,13 +224,14 @@ public function selectSubject(Request $request):JsonResponse
         $question->delete();
         return redirect()->back()->with('success', 'Question deleted successfully.');
     }
-
+     
+    //get all trashed question deleted with softDelete
     public function archived_questions():View
     {
         $deleted_questions = Question::onlyTrashed()->paginate(10);
         return view('dashboard.questions.Question',compact(['deleted_questions']));
     }
-
+   //restore questions which deleted with softDelete 
     public function restore($id):RedirectResponse
     {
         $question=Question::withTrashed()->where('id',$id);
@@ -239,6 +240,7 @@ public function selectSubject(Request $request):JsonResponse
         $answers->restore();
         return redirect()->route('questions.index');
     }
+    // delete question with answers completely
     public function hard_delete_question($id):RedirectResponse
     {
         $question=Question::withTrashed()->where('id',$id);
