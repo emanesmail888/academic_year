@@ -39,7 +39,8 @@ class ExamQuestionController extends Controller
         $exam_question = ExamQuestion::create($data);
         return back()->with('success', 'Exam And Question has been created successfully');
     }
-     // Show the form for editing  data of exam and question for updating
+
+    // Show the form for editing  data of exam and question for updating
     public function edit(Exam $exam, Question $question)
     {
         $school_years=SchoolYear::cursor();
