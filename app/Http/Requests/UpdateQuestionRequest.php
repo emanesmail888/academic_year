@@ -23,11 +23,21 @@ class UpdateQuestionRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             "subject_id" => "required|exists:subjects,id",
-            "question_name" => "required|string ",
+            "question_name" => "required|string",
             'answers' => 'required|array',
 
         ];
+
+        $answers = $this->input('answers', []);
+        foreach ($answers as $index => $answer) {
+            $rules['answers.' . $index . '.answer_text'] = 'required|string';
+            $rules['answers.' . $index . '.correct_answer'] = 'boolean';
+            $rules['answers.' . $index . '.id'] = 'required';
+           
+        }
+        return $rules;
+
     }
 }

@@ -23,14 +23,30 @@ class StoreQuestionRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        // return [
+        //     "subject_id" => "required|exists:subjects,id",
+        //     "question_name" => "required|string ",
+        //     'answers' => 'required|array',
+        //     'answers.answer_text' => 'required|string',
+        //     'answers.correct_answer' => 'nullable|boolean',
+
+
+        // ];
+
+        $rules = [
             "subject_id" => "required|exists:subjects,id",
-            "question_name" => "required|string ",
+            "question_name" => "required|string",
             'answers' => 'required|array',
-            // 'answers[][answer_text]' => 'required|string',
-            // 'answers[][correct_answer]' => 'nullable|boolean',
-
-
         ];
+
+        $answers = $this->input('answers', []);
+        foreach ($answers as $index => $answer) {
+            $rules['answers.' . $index . '.answer_text'] = 'required|string';
+            $rules['answers.' . $index . '.correct_answer'] = 'nullable';
+
+
+        }
+
+        return $rules;
     }
 }

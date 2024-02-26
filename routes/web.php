@@ -32,6 +32,7 @@ Route::get('/', [indexController::class, 'index'])->name('index');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['namespace' => 'App\Http\Controllers\Main'], function () {
+
 Route::resource('school_years', 'SchoolYearController');
 Route::get('/school_year/archived',[SchoolYearController::class,'archived_school_years'])->name('school_years.archived');
 Route::get('/school_year/restore/{id}',[SchoolYearController::class,'restore'])->name('school_year.restore');
@@ -63,6 +64,8 @@ Route::get('/exam_questions',[ExamQuestionController::class,'index'])->name('exa
 Route::get('/exam_questions/create',[ExamQuestionController::class,'create'])->name('exam_questions.create');
 Route::post('/exam_questions/store',[ExamQuestionController::class,'store'])->name('exam_questions.store');
 Route::delete('/exam/{examId}/question/{questionId}',[ExamQuestionController::class,'delete_exam_question'])->name('exam_questions.delete');
+Route::get('/exam/{exam}/question/{question}',[ExamQuestionController::class,'edit'])->name('exam_questions.edit');
+Route::put('/exam_questions/update/{exam}/{question}',[ExamQuestionController::class,'update'])->name('exam_questions.update');
 Route::get('select_examQuestion',[ExamQuestionController::class,'selectExamQuestion'])->name('select_examQuestion');
 
 

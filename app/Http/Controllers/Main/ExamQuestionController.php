@@ -8,6 +8,7 @@ use App\Models\Exam;
 use App\Models\SchoolYear;
 use App\Models\Question;
 use App\Http\Requests\StoreExamQuestionRequest;
+use App\Http\Requests\UpdateExamQuestionRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
@@ -38,6 +39,28 @@ class ExamQuestionController extends Controller
         $exam_question = ExamQuestion::create($data);
         return back()->with('success', 'Exam And Question has been created successfully');
     }
+     // Show the form for editing  data of exam and question for updating
+    public function edit(Exam $exam, Question $question)
+    {
+        $school_years=SchoolYear::cursor();
+
+        $examQuestion = $exam->questions()->where('question_id', $question->id)->first();
+        return view('dashboard.exams_questions.AddExamQuestion',compact('exam','question', 'examQuestion','school_years'));
+    }
+
+    //update the pivot table exam_questions With exam and question
+    public function update(UpdateExamQuestionRequest $request, Exam $exam, Question $question)
+    {
+        $data = $request->validated();
+
+        $pivotData = [
+            'exam_id' => $data['exam_id'],
+            'question_id' => $data['question_id'],
+        ];
+        $exam->questions()->updateExistingPivot($question->id, $pivotData);
+        return back()->with('success', 'ExamQuestion has been Updated successfully');
+   }
+
 
     //delete Exam And Questions Associated with it
     public function delete_exam_question($examId,$questionId):RedirectResponse
@@ -79,7 +102,7 @@ class ExamQuestionController extends Controller
 
 
 
-   
 
-    
+
+
 }

@@ -30,7 +30,7 @@
                         @endif
 
                         @if (isset($subject))
-                            <form action="{{ route('subjects.update', $subject->id) }}" method="POST">
+                            <form class="form-horizontal" action="{{ route('subjects.update', $subject->id) }}" method="POST">
                                 @method('PUT')
                                 @csrf
                                 <div class="form-group">
@@ -85,7 +85,7 @@
                                 </div><!-- form-group -->
                             </form>
                         @else
-                            <form action="{{ route('subjects.store') }}" method="POST">
+                            <form class="form-horizontal" action="{{ route('subjects.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">subject Name</label>
@@ -175,6 +175,6 @@
                     }
                 });
             });
-            
+
         });
     </script>

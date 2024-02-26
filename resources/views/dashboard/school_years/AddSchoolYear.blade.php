@@ -30,10 +30,10 @@
                     @endif
 
                    @if (isset($schoolYear))
-                    <form method="POST" action="{{ route('school_years.update', $schoolYear->id) }}" >
+                    <form class="form-horizontal" method="POST" action="{{ route('school_years.update', $schoolYear->id) }}" >
                         @method('PUT')
                     @else
-                    <form action="{{route('school_years.store')}}" method="POST" enctype="multipart/form-data" >
+                    <form class="form-horizontal" action="{{route('school_years.store')}}" method="POST" enctype="multipart/form-data" >
 
                     @endif
                         @csrf

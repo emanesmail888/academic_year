@@ -139,13 +139,14 @@ public function selectSchoolClass(Request $request):JsonResponse
         return view('dashboard.subjects.Subject',compact(['deleted_subjects']));
     }
 
-    //restore subjects which deleted with softDelete 
+    //restore subjects which deleted with softDelete
     public function restore($id):RedirectResponse
     {
         $subject=Subject::withTrashed()->where('id',$id);
         $subject->restore();
         return redirect()->route('subjects.index');
     }
+    
 
     //hard delete subject
     public function hard_delete_subject($id):RedirectResponse

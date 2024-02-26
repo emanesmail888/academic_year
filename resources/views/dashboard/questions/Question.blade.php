@@ -43,7 +43,17 @@
                                 <tr>
                                     <td>{{$question->id}}</td>
                                     <td>{{$question->question_name}}</td>
-                                    <td>{{$question->answers}}</td>
+                                    <td>
+                                        <ul>
+                                            @foreach ($question->answers as $item)
+                                                <ol>
+                                                    {{$item->answer_text}}
+                                                    {{$item->correct_answer}}
+
+                                                </ol>
+                                            @endforeach
+                                        </ul>
+                                    </td>
                                     <td>{{$question->subject_id}}</td>
                                     <td>{{$question->created_at}}</td>
                                     <td>
@@ -51,7 +61,7 @@
                                         <form action="{{route('questions.destroy',['question'=>$question->id])}}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button onclick="confirm('Are You Sure, You Want to delete this Question?')"><i class=" fa fa-times fa-2x"></i></button>
+                                            <button class="btn btn-destroy" onclick="confirm('Are You Sure, You Want to delete this Question?')"><i class=" fa fa-times fa-2x"></i></button>
                                         </form>
                                     </td>
                                 </tr>

@@ -47,7 +47,7 @@
                                         <form action="{{route('school_classes.destroy',['school_class'=>$schoolClass->id])}}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button onclick="confirm('Are You Sure, You Want to delete this School Class?')"><i class=" fa fa-times fa-2x"></i></button>
+                                            <button class="btn-destroy" onclick="confirm('Are You Sure, You Want to delete this School Class?')"><i class=" fa fa-times fa-2x"></i></button>
                                         </form>
 
                                     </td>

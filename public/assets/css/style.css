@@ -48,8 +48,6 @@ Primary use:    Ecommerce
 
 -------------------------------------------------------------------*/
 
-
-
 body{
 	font-family: 'Open Sans', sans-serif;
 	font-size: 13px;
@@ -7246,4 +7244,12 @@ p.text-sm.text-gray-700.leading-5 {
     color: black;
     font-size: 16px;
     font-weight: bold;
+}
+.btn-destroy
+{
+    color: #337ab7;
+    background-color: transparent;
+    padding: 0px;
+    border: none;
+   
 }

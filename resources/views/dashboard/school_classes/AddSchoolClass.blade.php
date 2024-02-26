@@ -32,7 +32,7 @@
                         @endif
 
                         @if (isset($schoolClass))
-                            <form method="POST" action="{{ route('school_classes.update', $schoolClass->id) }}">
+                            <form class="form-horizontal" method="POST" action="{{ route('school_classes.update', $schoolClass->id) }}">
                                 @method('PUT')
                                 @csrf
                                 <div class="form-group">
@@ -70,7 +70,7 @@
 
                             </form>
                         @else
-                            <form action="{{ route('school_classes.store') }}" method="POST"
+                            <form class="form-horizontal" action="{{ route('school_classes.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">

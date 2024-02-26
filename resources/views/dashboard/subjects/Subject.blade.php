@@ -43,14 +43,16 @@
                                     <td>{{$subject->subject_name}}</td>
                                     <td>{{$subject->school_class_id}}</td>
                                     <td>{{$subject->created_at}}</td>
-                                    <td>
+
+                                    <td class="">
                                         <a href="{{route('subjects.edit',['subject'=>$subject->id])}}"><i class=" fa fa-edit fa-2x"></i></a>
                                         <form action="{{route('subjects.destroy',['subject'=>$subject->id])}}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button onclick="confirm('Are You Sure, You Want to delete this Subject?')"><i class=" fa fa-times fa-2x"></i></button>
+                                            <button class="btn-destroy " onclick="confirm('Are You Sure, You Want to delete this Subject?')"><i class=" fa fa-times fa-2x"></i></button>
                                         </form>
                                     </td>
+
                                 </tr>
 
                                 @endforeach

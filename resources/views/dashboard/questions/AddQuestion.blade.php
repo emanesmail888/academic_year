@@ -27,9 +27,9 @@
                         @if (Session::has('success'))
                             <div class="alert alert-success " role="alert">{{ Session::get('success') }}
                             </div>
-                        @elseif(Session::has('fail')) 
+                        @elseif(Session::has('fail'))
                             <div class="alert alert-danger" role="alert">{{ Session::get('fail') }}
-                            </div>   
+                            </div>
                         @endif
 
 
@@ -40,17 +40,7 @@
                             @csrf
                             @method('PUT')
 
-                            <!-- Question Name -->
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">question Name</label>
-                                <div class="col-md-10">
-                                    <input type="text" name="question_name" placeholder="question Name " id=""
-                                        class="form-control" value="{{ $question->question_name }} " />
-                                    @error('question_name')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div><!-- form-group -->
+
 
                             <!-- School Year -->
                             <div class="form-group">
@@ -66,7 +56,7 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                   
+
                                 </div>
                             </div><!-- form-group -->
 
@@ -78,9 +68,9 @@
                                     <select name="school_class_id" id="school_class_id" class="form-control">
                                         <option value="{{ $question->subject->schoolClass->id }}">
                                             {{ $question->subject->schoolClass->class_name }}</option>
-                                       
+
                                     </select>
-                                   
+
                                 </div>
                             </div><!-- form-group -->
 
@@ -100,12 +90,24 @@
                                 </div>
                             </div><!-- form-group -->
 
+                            <!-- Question Name -->
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">question Name</label>
+                                <div class="col-md-10">
+                                    <input type="text" name="question_name" placeholder="question Name " id=""
+                                        class="form-control" value="{{ $question->question_name }} " />
+                                    @error('question_name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div><!-- form-group -->
+
 
                             <!-- Answers -->
-                            <div class="form-group col-md-6">
-                                <label>Answers:</label>
-                                @foreach ($question->answers as $index => $answer)
-                                    <div class=" offset-2" >
+                            <div class="form-group col-md-10">
+                                <label class="col-md-3 control-label">Answers:</label>
+                                <div class="col-md-7" >
+                                 @foreach ($question->answers as $index => $answer)
                                         <input type="text" name="answers[{{ $index }}][answer_text]"
                                             value="{{ $answer->answer_text }}" class="form-control" required>
                                         <input type="hidden" name="answers[{{ $index }}][id]"
@@ -115,8 +117,9 @@
                                                 value="1" {{ $answer->correct_answer ? 'checked' : '' }}>
                                             Correct Answer
                                         </label>
-                                    </div>
-                                @endforeach
+                                  @endforeach
+                             </div>
+
                             </div><!-- form-group -->
 
                             <div class="form-group">
@@ -131,16 +134,7 @@
                     <form class="form-horizontal" action="{{ route('questions.store') }}" method="POST">
                         @csrf
 
-                        <div class="form-group ">
-                            <label class="col-md-2 control-label">question Name</label>
-                            <div class="col-md-10">
-                                <input type="text" name="question_name" placeholder="Question Name " id=""
-                                    class="form-control col-md-8" value=" " />
-                                @error('question_name')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div><!-- form-group -->                        
+
 
 
                         <!-- School Year -->
@@ -188,13 +182,25 @@
                                 @enderror
                             </div>
                         </div><!-- form-group -->
+                        
+                       <!-- Question Name -->
+                        <div class="form-group ">
+                            <label class="col-md-2 control-label">question Name</label>
+                            <div class="col-md-10">
+                                <input type="text" name="question_name" placeholder="Question Name " id=""
+                                    class="form-control col-md-8" value=" " />
+                                @error('question_name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div><!-- form-group -->
 
                      <!-- Answers -->
-                        <div class="form-group">
-                            <div class="answer-wrapper col-md-6 ">
-                                <label>Answers:</label>
+                        <div class="form-group col-md-8">
+                            <label class="col-md-3 control-label">Answers:</label>
 
-                                <div>
+                            <div class="answer-wrapper col-md-5 ">
+                                <div >
                                     <input type="text" name="answers[0][answer_text]" class="form-control" required>
                                     <label>
                                         <input type="checkbox"  name="answers[0][correct_answer]">
@@ -208,8 +214,8 @@
                         </div><!-- form-group -->
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label"></label>
-                            <div class="col-md-6">
+                            <label class="col-md-5 control-label"></label>
+                            <div class="col-md-7">
                                 <input type="submit" value="Add Question" class="btn btn-success">
                             </div>
                         </div><!-- form-group -->

@@ -46,7 +46,7 @@
                                         <form action="{{route('exams.destroy',['exam'=>$exam->id])}}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button onclick="confirm('Are You Sure, You Want to delete this Exam?')"><i class=" fa fa-times fa-2x"></i></button>
+                                            <button class="btn-destroy" onclick="confirm('Are You Sure, You Want to delete this Exam?')"><i class=" fa fa-times fa-2x"></i></button>
                                         </form>
                                     </td>
                                 </tr>
