@@ -11,7 +11,7 @@ class StoreSchoolYearRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize():bool
     {
         return true;
     }
@@ -21,7 +21,7 @@ class StoreSchoolYearRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules():array
     {
         return [
             "year"=>"required|numeric|between:2015,2040|digits:4",

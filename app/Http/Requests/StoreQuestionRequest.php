@@ -11,7 +11,7 @@ class StoreQuestionRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize():bool
     {
         return true;
     }
@@ -21,17 +21,8 @@ class StoreQuestionRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules():array
     {
-        // return [
-        //     "subject_id" => "required|exists:subjects,id",
-        //     "question_name" => "required|string ",
-        //     'answers' => 'required|array',
-        //     'answers.answer_text' => 'required|string',
-        //     'answers.correct_answer' => 'nullable|boolean',
-
-
-        // ];
 
         $rules = [
             "subject_id" => "required|exists:subjects,id",

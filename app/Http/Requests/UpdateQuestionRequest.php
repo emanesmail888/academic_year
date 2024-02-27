@@ -11,7 +11,7 @@ class UpdateQuestionRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize():bool
     {
         return true;
     }
@@ -21,7 +21,7 @@ class UpdateQuestionRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules():array
     {
         $rules = [
             "subject_id" => "required|exists:subjects,id",
@@ -35,7 +35,7 @@ class UpdateQuestionRequest extends FormRequest
             $rules['answers.' . $index . '.answer_text'] = 'required|string';
             $rules['answers.' . $index . '.correct_answer'] = 'boolean';
             $rules['answers.' . $index . '.id'] = 'required';
-           
+
         }
         return $rules;
 

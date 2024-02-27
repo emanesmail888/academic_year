@@ -11,7 +11,7 @@ class StoreSchoolClassRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize():bool
     {
         return true;
     }
@@ -21,7 +21,7 @@ class StoreSchoolClassRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules():array
     {
         return [
             "school_year_id" => "required|exists:school_years,id",
